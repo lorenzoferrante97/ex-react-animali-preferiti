@@ -18,12 +18,15 @@
 
   <script type="text/babel">
 
-    const randomAnimal = (animals) => {
-      const randomIndex = Math.floor(Math.random() * (animals.length));
-      return animals[ randomIndex ];
+    const randomAnimal = (animalsChoices) => {
+      const randomIndex = Math.floor(Math.random() * (animalsChoices.length));
+      return animalsChoices[ randomIndex ];
     }
 
-
+    const addAnimal = (animalsChoices, animals, setAnimals) => {
+      const animal = randomAnimal(animalsChoices);
+      setAnimals([ ...animals, animal ]);
+    }
 
     const AccordionList = () => {
 
@@ -35,13 +38,18 @@
 
       return (
         <>
-          <button>Aggiungi Animale</button>
-          <details>
+          <button onClick={() => addAnimal(animalsChoices, animals, setAnimals)}>Aggiungi Animale</button>
+          <details open>
             <summary>Animali</summary>
             <div>
               <ul>
                 {
-                  animals.map((animal, i) => <li key={i}>{animal}</li>)
+                  animals.length != 0 ? (
+                    animals.map((animal, i) => <li key={i}>{animal}</li>)
+                  ) : (
+                    <li>Non ci sono animali nella lista</li>
+                  )
+
                 }
               </ul>
             </div>
