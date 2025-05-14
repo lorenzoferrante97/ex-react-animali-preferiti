@@ -23,13 +23,15 @@
       return animalsChoices[ randomIndex ];
     }
 
-    const addAnimal = (animalsChoices, animals, setAnimals) => {
-      const animal = randomAnimal(animalsChoices);
-      setAnimals([ ...animals, animal ]);
+    const addAnimal = (animals, setAnimals, animalInput) => {
+      // const animal = randomAnimal(animalsChoices);
+      // setAnimals([ ...animals, animal ]);
+      setAnimals([ ...animals, animalInput ]);
+
     }
 
-    const showModal = (setModalVisibility) => {
-      setModalVisibility(true);
+    const showModal = (setModalVisibility, modalVisibility) => {
+      setModalVisibility(!modalVisibility);
     }
 
     const handleInput = (e, setAnimalInput) => {
@@ -59,11 +61,13 @@
         <>
           {/* <button onClick={() => addAnimal(animalsChoices, animals, setAnimals)}>Aggiungi Animale</button> */}
           <div>
-            <button onClick={() => showModal(setModalVisibility)}>Aggiungi Animale</button>
+            <button onClick={() => showModal(setModalVisibility, modalVisibility)}>Aggiungi Animale</button>
             <Modal
               title="Aggiungi un animale"
               content={<Input setAnimalInput={setAnimalInput} />}
-              show={modalVisibility} />
+              show={modalVisibility}
+              onConfirm={() => { addAnimal(animals, setAnimals, animalInput); showModal(setModalVisibility, modalVisibility) }}
+              onClose={() => showModal(setModalVisibility, modalVisibility)} />
           </div>
 
 
@@ -99,7 +103,7 @@
             <h2>{title}</h2>
             {content}
             <div>
-              <button>Conferma</button>
+              <button onClick={onConfirm}>Conferma</button>
               <button onClick={onClose}>Annulla</button>
             </div>
 
