@@ -19,14 +19,24 @@
   <script type="text/babel">
 
     const AccordionList = () => {
+
+      const animals = [ "Cane", "Gatto", "Camaleonte", "Opossum", "Capibara" ];
+
       return (
-        <h1>Hello</h1>
+        <details>
+          <summary>Animali</summary>
+          <div>
+            <ul>
+            </ul>
+          </div>
+        </details>
       )
     }
 
   </script>
 
   <!-- React Render -->
+
   <script type="text/babel">
     const { createRoot } = ReactDOM;
     const listContainer = document.querySelector(".lista-animali");
