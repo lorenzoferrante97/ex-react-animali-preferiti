@@ -27,6 +27,9 @@
           <summary>Animali</summary>
           <div>
             <ul>
+              {
+                animals.map((animal, i) => <li key={i}>{animal}</li>)
+              }
             </ul>
           </div>
         </details>
