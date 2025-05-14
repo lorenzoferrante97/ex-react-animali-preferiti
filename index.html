@@ -32,6 +32,19 @@
       setModalVisibility(true);
     }
 
+    const handleInput = (e, setAnimalInput) => {
+      setAnimalInput(e.target.value);
+    }
+
+    const Input = ({ setAnimalInput }) => {
+      return (
+        <>
+          <label htmlFor="animal">Inserisci un animale</label>
+          <input name="animal" type="text" placeholder="gatto" onChange={(e) => handleInput(e, setAnimalInput)} />
+        </>
+      )
+    }
+
     const AccordionList = () => {
 
       const animalsChoices = [ "Cane", "Gatto", "Pappagallo", "Cavallo", "Panda" ];
@@ -39,6 +52,7 @@
       const { useState } = React;
       const [ animals, setAnimals ] = useState([]);
       const [ modalVisibility, setModalVisibility ] = useState(false);
+      const [ animalInput, setAnimalInput ] = useState("");
 
 
       return (
@@ -48,7 +62,7 @@
             <button onClick={() => showModal(setModalVisibility)}>Aggiungi Animale</button>
             <Modal
               title="Aggiungi un animale"
-              content={<input placeholder="gatto" />}
+              content={<Input setAnimalInput={setAnimalInput} />}
               show={modalVisibility} />
           </div>
 
