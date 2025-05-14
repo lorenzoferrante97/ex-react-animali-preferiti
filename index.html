@@ -28,17 +28,31 @@
       setAnimals([ ...animals, animal ]);
     }
 
+    const showModal = (setModalVisibility) => {
+      setModalVisibility(true);
+    }
+
     const AccordionList = () => {
 
       const animalsChoices = [ "Cane", "Gatto", "Pappagallo", "Cavallo", "Panda" ];
 
       const { useState } = React;
       const [ animals, setAnimals ] = useState([]);
+      const [ modalVisibility, setModalVisibility ] = useState(false);
 
 
       return (
         <>
-          <button onClick={() => addAnimal(animalsChoices, animals, setAnimals)}>Aggiungi Animale</button>
+          {/* <button onClick={() => addAnimal(animalsChoices, animals, setAnimals)}>Aggiungi Animale</button> */}
+          <div>
+            <button onClick={() => showModal(setModalVisibility)}>Aggiungi Animale</button>
+            <Modal
+              title="Aggiungi un animale"
+              content={<input placeholder="gatto" />}
+              show={modalVisibility} />
+          </div>
+
+
           <details open>
             <summary>Animali</summary>
             <div>
@@ -62,14 +76,19 @@
       title,
       content,
       show = false,
-      onClose = () => { }
+      onClose = () => { },
+      onConfirm = () => { }
     }) {
       return show && ReactDOM.createPortal(
         <div className="modal-container">
           <div className="modal">
             <h2>{title}</h2>
-            <p>{content}</p>
-            <button onClick={onClose}>Annulla</button>
+            {content}
+            <div>
+              <button>Conferma</button>
+              <button onClick={onClose}>Annulla</button>
+            </div>
+
           </div>
         </div>,
         document.body
