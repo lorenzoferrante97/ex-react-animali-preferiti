@@ -18,9 +18,16 @@
 
   <script type="text/babel">
 
+    const randomAnimal = (animals) => {
+      const randomIndex = Math.floor(Math.random() * (animals.length));
+      return animals[ randomIndex ];
+    }
+
+
+
     const AccordionList = () => {
 
-      // const animals = [ "Cane", "Gatto", "Camaleonte", "Opossum", "Capibara" ];
+      const animalsChoices = [ "Cane", "Gatto", "Pappagallo", "Cavallo", "Panda" ];
 
       const { useState } = React;
       const [ animals, setAnimals ] = useState([]);
