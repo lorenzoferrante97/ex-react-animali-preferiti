@@ -20,19 +20,26 @@
 
     const AccordionList = () => {
 
-      const animals = [ "Cane", "Gatto", "Camaleonte", "Opossum", "Capibara" ];
+      // const animals = [ "Cane", "Gatto", "Camaleonte", "Opossum", "Capibara" ];
+
+      const { useState } = React;
+      const [ animals, setAnimals ] = useState([]);
+
 
       return (
-        <details>
-          <summary>Animali</summary>
-          <div>
-            <ul>
-              {
-                animals.map((animal, i) => <li key={i}>{animal}</li>)
-              }
-            </ul>
-          </div>
-        </details>
+        <>
+          <button>Aggiungi Animale</button>
+          <details>
+            <summary>Animali</summary>
+            <div>
+              <ul>
+                {
+                  animals.map((animal, i) => <li key={i}>{animal}</li>)
+                }
+              </ul>
+            </div>
+          </details>
+        </>
       )
     }
 
